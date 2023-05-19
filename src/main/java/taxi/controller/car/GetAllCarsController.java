@@ -14,14 +14,13 @@ import taxi.service.CarService;
 @WebServlet(urlPatterns = "/cars")
 public class GetAllCarsController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("taxi");
-    private final CarService carService = (CarService) injector
-            .getInstance(CarService.class);
+    private final CarService carService = (CarService) injector.getInstance(CarService.class);
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        List<Car> allCars = carService.getAll();
-        req.setAttribute("cars", allCars);
+        List<Car> cars = carService.getAll();
+        req.setAttribute("cars", cars);
         req.getRequestDispatcher("/WEB-INF/views/cars/all.jsp").forward(req, resp);
     }
 }
